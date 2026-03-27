@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GA Plumbing Services | Professional Plumbing South Africa</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;scroll-behavior:smooth}
+body{font-family:'Nunito Sans',sans-serif;background:#060F1E;color:#fff;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+:root{
+  --navy:#060F1E;
+  --navy2:#0D1F3C;
+  --navy3:#142850;
+  --cyan:#00D4FF;
+  --cyan2:#00AACC;
+  --coral:#FF5C35;
+  --coral2:#E04020;
+  --white:#FFFFFF;
+  --offwhite:#E8F4F8;
+  --muted:rgba(255,255,255,0.45);
+  --mutedlo:rgba(255,255,255,0.12);
+}
+
+/* ── BUBBLES BACKGROUND ── */
+.bubbles{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;overflow:hidden;
+}
+.bubble{
+  position:absolute;bottom:-60px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, rgba(0,212,255,0.18), rgba(0,212,255,0.04));
+  border:1px solid rgba(0,212,255,0.12);
+  animation:bubbleRise linear infinite;
+}
+@keyframes bubbleRise{
+  0%{transform:translateY(0) translateX(0);opacity:0}
+  10%{opacity:1}
+  90%{opacity:.4}
+  100%{transform:translateY(-110vh) translateX(30px);opacity:0}
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:68px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;
+  background:rgba(6,15,30,0.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(0,212,255,0.15);
+  transition:background .3s;
+}
+.nav-logo{display:flex;align-items:center;gap:.75rem}
+.nav-logo-icon{
+  width:38px;height:38px;
+  background:var(--cyan);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;
+  color:var(--navy);
+  flex-shrink:0;
+}
+.nav-logo-text{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:1.2rem;letter-spacing:.06em;
+  line-height:1.1;
+}
+.nav-logo-text span{color:var(--cyan);display:block;font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:.25rem}
+.nav-links a{
+  font-family:'Nunito Sans',sans-serif;font-size:.78rem;font-weight:600;
+  letter-spacing:.06em;
+  color:var(--muted);padding:.5rem .9rem;
+  border-radius:6px;transition:all .2s;
+}
+.nav-links a:hover{color:#fff;background:var(--mutedlo)}
+.nav-emergency{
+  background:var(--coral)!important;color:#fff!important;
+  font-weight:700!important;border-radius:8px!important;
+  padding:.55rem 1.2rem!important;
+  display:flex;align-items:center;gap:.4rem;
+  font-size:.75rem!important;
+  animation:emergencyPulse 2.5s ease-in-out infinite;
+}
+@keyframes emergencyPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,92,53,0.4)}
+  50%{box-shadow:0 0 0 8px rgba(255,92,53,0)}
+}
+.nav-emergency::before{content:'';width:7px;height:7px;border-radius:50%;background:#fff;animation:dot 1.2s ease-in-out infinite}
+@keyframes dot{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── HERO ── */
+.hero{
+  min-height:100svh;
+  position:relative;z-index:1;
+  display:flex;align-items:center;
+  overflow:hidden;
+  padding-top:68px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,212,255,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(255,92,53,0.06) 0%, transparent 50%),
+    linear-gradient(160deg, #060F1E 0%, #0D1F3C 50%, #060F1E 100%);
+}
+/* Pipe decoration */
+.hero-pipe{
+  position:absolute;right:0;top:0;bottom:0;width:45%;
+  background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&fit=crop&auto=format') center/cover no-repeat;
+  filter:brightness(.35) saturate(.6) hue-rotate(180deg);
+  clip-path:polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+}
+.hero-pipe::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right, var(--navy) 0%, transparent 30%),
+             linear-gradient(to top, var(--navy) 0%, transparent 20%);
+}
+.hero-glow{
+  position:absolute;top:20%;right:20%;
+  width:300px;height:300px;
+  background:radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%);
+  border-radius:50%;
+  animation:glowPulse 4s ease-in-out infinite;
+}
+@keyframes glowPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.2);opacity:1}}
+
+.hero-content{
+  position:relative;z-index:2;
+  padding:4rem 2.5rem 4rem;
+  max-width:640px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(0,212,255,0.1);
+  border:1px solid rgba(0,212,255,0.25);
+  border-radius:100px;
+  padding:.35rem .9rem;
+  font-family:'Nunito Sans',sans-serif;font-size:.65rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);
+  margin-bottom:1.75rem;
+  opacity:0;animation:fadeSlideUp .7s .3s ease forwards;
+}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:dot 1.5s infinite}
+
+.hero h1{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:clamp(3rem,7vw,5.5rem);
+  line-height:.95;letter-spacing:.02em;
+  margin-bottom:1.5rem;
+}
+.hero h1 .line{
+  display:block;overflow:hidden;
+}
+.hero h1 .line span{
+  display:block;
+  transform:translateY(100%);
+  animation:lineReveal .8s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero h1 .line:nth-child(1) span{animation-delay:.4s}
+.hero h1 .line:nth-child(2) span{animation-delay:.55s;color:var(--cyan)}
+.hero h1 .line:nth-child(3) span{animation-delay:.7s}
+@keyframes lineReveal{to{transform:translateY(0)}}
+
+.hero-sub{
+  font-size:1rem;font-weight:300;line-height:1.8;
+  color:var(--muted);max-width:420px;margin-bottom:2.25rem;
+  opacity:0;animation:fadeSlideUp .7s .9s ease forwards;
+}
+.hero-sub strong{color:var(--offwhite);font-weight:600}
+
+.hero-actions{
+  display:flex;gap:.75rem;flex-wrap:wrap;
+  opacity:0;animation:fadeSlideUp .7s 1.1s ease forwards;
+}
+
+@keyframes fadeSlideUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.btn{
+  font-family:'Nunito Sans',sans-serif;font-size:.8rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.9rem 1.8rem;border-radius:10px;
+  display:inline-flex;align-items:center;gap:.5rem;
+  transition:all .25s;border:2px solid transparent;
+  position:relative;overflow:hidden;
+}
+.btn::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,0.12);
+  transform:translateX(-100%);
+  transition:transform .3s cubic-bezier(.77,0,.18,1);
+}
+.btn:hover::after{transform:translateX(0)}
+.btn-cyan{background:var(--cyan);color:var(--navy);border-color:var(--cyan)}
+.btn-cyan:hover{background:transparent;color:var(--cyan)}
+.btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.25)}
+.btn-outline:hover{border-color:#fff}
+
+.hero-trust{
+  display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;
+  opacity:0;animation:fadeSlideUp .7s 1.3s ease forwards;
+}
+.trust-item{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.72rem;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);
+}
+.trust-item span{color:var(--cyan);font-size:1rem}
+
+/* ── EMERGENCY STRIP ── */
+.emergency{
+  position:relative;z-index:1;
+  background:var(--coral);
+  padding:1rem 2.5rem;
+  display:flex;align-items:center;justify-content:center;gap:1.5rem;
+  flex-wrap:wrap;
+}
+.emergency p{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:1.1rem;letter-spacing:.04em;
+}
+.emergency a{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:1.3rem;letter-spacing:.06em;
+  background:rgba(0,0,0,.15);
+  padding:.3rem 1.2rem;border-radius:6px;
+  display:flex;align-items:center;gap:.5rem;
+  transition:background .2s;
+}
+.emergency a:hover{background:rgba(0,0,0,.3)}
+
+/* ── SECTION BASE ── */
+section{position:relative;z-index:1}
+.section-tag{
+  font-family:'Nunito Sans',sans-serif;
+  font-size:.62rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:.75rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.section-tag::before{content:'';width:16px;height:2px;background:var(--cyan)}
+.section-h{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:clamp(2.2rem,4.5vw,3.8rem);
+  line-height:1;letter-spacing:.02em;
+}
+.section-inner{max-width:1140px;margin:0 auto;padding:0 2.5rem}
+
+/* ── SERVICES ── */
+.services{padding:6rem 0;background:var(--navy)}
+.svc-head{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2rem;align-items:end;margin-bottom:3.5rem;
+}
+.svc-head p{font-size:.9rem;line-height:1.85;color:var(--muted)}
+.svc-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5px;
+  background:var(--mutedlo);
+  border-radius:16px;overflow:hidden;
+}
+.svc-card{
+  background:var(--navy2);
+  padding:2.25rem 2rem;
+  position:relative;overflow:hidden;
+  transition:background .3s;
+  cursor:default;
+}
+/* Flood fill from bottom on hover */
+.svc-card::before{
+  content:'';
+  position:absolute;left:0;right:0;bottom:0;height:0;
+  background:linear-gradient(to top, rgba(0,212,255,.12), rgba(0,212,255,.04));
+  transition:height .45s cubic-bezier(.16,1,.3,1);
+}
+.svc-card:hover::before{height:100%}
+.svc-card:hover{background:var(--navy3)}
+
+.svc-icon{
+  width:48px;height:48px;
+  border-radius:12px;
+  background:rgba(0,212,255,.1);
+  border:1px solid rgba(0,212,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.25rem;
+  font-size:1.3rem;
+  position:relative;z-index:1;
+  transition:background .3s, border-color .3s;
+}
+.svc-card:hover .svc-icon{background:rgba(0,212,255,.2);border-color:var(--cyan)}
+.svc-title{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:1.2rem;letter-spacing:.04em;
+  margin-bottom:.5rem;position:relative;z-index:1;
+}
+.svc-desc{
+  font-size:.8rem;line-height:1.75;color:var(--muted);
+  position:relative;z-index:1;
+}
+
+/* ── WHY US ── */
+.why{padding:6rem 0;background:var(--navy2)}
+.why-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+}
+.why-img{
+  position:relative;border-radius:20px;overflow:hidden;
+}
+.why-img img{
+  width:100%;height:460px;object-fit:cover;
+  filter:brightness(.7) saturate(.5) hue-rotate(175deg);
+  display:block;
+}
+.why-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg, rgba(0,212,255,.15) 0%, transparent 60%);
+  border-radius:20px;
+}
+/* Cyan corner accent */
+.why-img::before{
+  content:'';
+  position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;
+  border-radius:22px;
+  background:linear-gradient(135deg, var(--cyan), transparent 50%);
+  z-index:-1;
+}
+.stats-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;margin-top:2.5rem;
+}
+.stat-card{
+  background:var(--navy);
+  border-radius:14px;
+  border:1px solid var(--mutedlo);
+  padding:1.5rem;
+  transition:border-color .25s, transform .25s;
+}
+.stat-card:hover{border-color:rgba(0,212,255,.3);transform:translateY(-3px)}
+.stat-n{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:2.5rem;line-height:1;
+  color:var(--cyan);
+}
+.stat-label{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+
+/* ── PROCESS ── */
+.process{padding:6rem 0;background:var(--navy)}
+.process-head{text-align:center;max-width:500px;margin:0 auto 4rem}
+.process-head p{margin-top:.75rem;color:var(--muted);font-size:.9rem;line-height:1.8}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;
+  position:relative;
+}
+/* Animated connector line */
+.steps::before{
+  content:'';
+  position:absolute;top:2rem;left:12.5%;right:12.5%;height:2px;
+  background:linear-gradient(90deg, var(--cyan) var(--fill, 0%), var(--mutedlo) var(--fill, 0%));
+  animation:lineFill 2s 1s ease forwards;
+}
+@keyframes lineFill{to{--fill:100%}}
+.step{
+  padding:0 1.5rem;text-align:center;
+  position:relative;
+}
+.step-dot{
+  width:64px;height:64px;
+  background:var(--navy2);
+  border:2px solid rgba(0,212,255,.3);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.3rem;
+  color:var(--cyan);
+  position:relative;z-index:1;
+  transition:background .3s, border-color .3s, transform .3s;
+}
+.step:hover .step-dot{
+  background:var(--cyan);color:var(--navy);border-color:var(--cyan);
+  transform:scale(1.1);
+}
+.step-title{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:1.05rem;letter-spacing:.04em;margin-bottom:.5rem;
+}
+.step-desc{font-size:.78rem;line-height:1.7;color:var(--muted)}
+
+/* ── TESTIMONIALS ── */
+.testimonials{padding:6rem 0;background:var(--navy2)}
+.testi-head{text-align:center;margin-bottom:3rem}
+.testi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.testi-card{
+  background:var(--navy);
+  border-radius:16px;
+  border:1px solid var(--mutedlo);
+  padding:2rem;
+  transition:border-color .25s, transform .25s;
+}
+.testi-card:hover{border-color:rgba(0,212,255,.25);transform:translateY(-4px)}
+.stars{color:var(--cyan);font-size:.9rem;letter-spacing:.1em;margin-bottom:1rem}
+.testi-text{font-size:.85rem;line-height:1.8;color:var(--muted);font-style:italic;margin-bottom:1.25rem}
+.testi-text::before{content:'"';font-size:1.5rem;color:var(--cyan);line-height:0;vertical-align:-.25em;margin-right:.15rem}
+.testi-author{
+  display:flex;align-items:center;gap:.75rem;
+}
+.testi-avatar{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg, var(--cyan), var(--navy3));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;
+  color:var(--navy);flex-shrink:0;
+}
+.testi-name{font-weight:700;font-size:.82rem}
+.testi-loc{font-size:.7rem;color:var(--muted)}
+
+/* ── CTA ── */
+.cta-section{
+  padding:6rem 2.5rem;
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg, var(--navy3) 0%, var(--navy2) 100%);
+  text-align:center;
+}
+.cta-section::before{
+  content:'';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:600px;
+  background:radial-gradient(circle, rgba(0,212,255,.1) 0%, transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+}
+.cta-section h2{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:.02em;line-height:1;
+  margin-bottom:1rem;position:relative;z-index:1;
+}
+.cta-section h2 span{color:var(--cyan)}
+.cta-section p{
+  font-size:1rem;color:var(--muted);line-height:1.75;
+  max-width:480px;margin:0 auto 2.5rem;
+  position:relative;z-index:1;
+}
+.cta-phone{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:clamp(2.5rem,5vw,4rem);
+  color:var(--cyan);letter-spacing:.06em;
+  display:block;margin-bottom:2rem;
+  position:relative;z-index:1;
+  text-shadow:0 0 40px rgba(0,212,255,.3);
+}
+.cta-btns{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  position:relative;z-index:1;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--navy);
+  border-top:1px solid var(--mutedlo);
+  padding:3.5rem 2.5rem 2rem;
+}
+.ft-inner{
+  max-width:1140px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr;
+  gap:3rem;margin-bottom:2rem;
+}
+.ft-logo{
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:1.4rem;letter-spacing:.06em;
+  display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem;
+}
+.ft-logo-icon{
+  width:32px;height:32px;background:var(--cyan);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;color:var(--navy);font-weight:700;flex-shrink:0;
+}
+.ft-desc{font-size:.8rem;line-height:1.8;color:var(--muted);margin-bottom:1rem}
+.ft-contact{font-size:.82rem;color:var(--muted)}
+.ft-contact a{color:var(--cyan);transition:opacity .2s}
+.ft-contact a:hover{opacity:.75}
+.ft-col h5{
+  font-family:'Nunito Sans',sans-serif;
+  font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.25);margin-bottom:1rem;
+}
+.ft-col ul{list-style:none}
+.ft-col li{margin-bottom:.4rem}
+.ft-col a{
+  font-size:.8rem;color:rgba(255,255,255,.35);
+  transition:color .18s;
+  display:flex;align-items:center;gap:.4rem;
+}
+.ft-col a:hover{color:var(--cyan)}
+.ft-bottom{
+  max-width:1140px;margin:0 auto;
+  padding-top:1.25rem;border-top:1px solid var(--mutedlo);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;
+}
+.ft-bottom p{font-size:.65rem;color:rgba(255,255,255,.2);letter-spacing:.04em}
+
+/* ── SCROLL REVEAL ── */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.vis{opacity:1;transform:none}
+.rv-l{opacity:0;transform:translateX(-30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv-l.vis{opacity:1;transform:none}
+.rv-r{opacity:0;transform:translateX(30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv-r.vis{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .why-inner{grid-template-columns:1fr;gap:3rem}
+  .why-img img{height:320px}
+  .steps{grid-template-columns:1fr 1fr;gap:2rem}
+  .steps::before{display:none}
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .ft-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  nav .nav-links a:not(.nav-emergency){display:none}
+  .svc-head{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .ft-inner{grid-template-columns:1fr}
+  .hero-content{padding:3rem 1.5rem 3rem}
+  .emergency{flex-direction:column;text-align:center;gap:.75rem}
+}
+</style>
+</head>
+<body>
+
+<!-- BUBBLES -->
+<div class="bubbles" id="bubbles"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">GA</div>
+    <div class="nav-logo-text">
+      GA Plumbing Services
+      <span>PTY LTD · South Africa</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#process">Process</a>
+    <a href="#contact" class="nav-emergency">📞 Emergency</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pipe"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Trusted Plumbing Professionals · South Africa</div>
+    <h1>
+      <span class="line"><span>YOUR PIPES,</span></span>
+      <span class="line"><span>OUR PROBLEM.</span></span>
+      <span class="line"><span>FIXED FAST.</span></span>
+    </h1>
+    <p class="hero-sub">
+      GA Plumbing Services delivers <strong>fast, reliable and professional</strong> plumbing solutions. From emergency leaks to full installations — we've got it covered, 24/7.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:0730731938" class="btn btn-cyan">📞 Call Now</a>
+      <a href="#services" class="btn btn-outline">Our Services</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><span>✓</span> 24/7 Emergency</div>
+      <div class="trust-item"><span>✓</span> Licensed & Insured</div>
+      <div class="trust-item"><span>✓</span> No Call-Out Fee</div>
+    </div>
+  </div>
+</section>
+
+<!-- EMERGENCY STRIP -->
+<div class="emergency">
+  <p>🚨 PLUMBING EMERGENCY? WE RESPOND WITHIN 60 MINUTES</p>
+  <a href="tel:0730731938">073 073 1938</a>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="svc-head">
+      <div>
+        <div class="section-tag rv">What We Do</div>
+        <h2 class="section-h rv d1">PLUMBING<br>SERVICES</h2>
+      </div>
+      <p class="rv d2">From burst pipes to full bathroom installations, GA Plumbing Services handles every plumbing job with speed, professionalism and guaranteed workmanship. Available across South Africa.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card rv">
+        <div class="svc-icon">🔧</div>
+        <div class="svc-title">Burst & Leaking Pipes</div>
+        <div class="svc-desc">Emergency pipe repairs, leak detection and burst geyser replacement. Fast response, minimal disruption to your home or business.</div>
+      </div>
+      <div class="svc-card rv d1">
+        <div class="svc-icon">🚿</div>
+        <div class="svc-title">Bathroom Installations</div>
+        <div class="svc-desc">Full bathroom fitouts, shower installations, toilet and basin fitting. New builds and renovations handled from start to finish.</div>
+      </div>
+      <div class="svc-card rv d2">
+        <div class="svc-icon">🌡️</div>
+        <div class="svc-title">Geyser Services</div>
+        <div class="svc-desc">Geyser installation, replacement and repair. Solar geyser conversions and heat pump installations for energy savings.</div>
+      </div>
+      <div class="svc-card rv d3">
+        <div class="svc-icon">🚰</div>
+        <div class="svc-title">Drain Unblocking</div>
+        <div class="svc-desc">Blocked drains, toilets and sewer lines. High-pressure jetting and CCTV drain inspection to find and clear any blockage.</div>
+      </div>
+      <div class="svc-card rv d4">
+        <div class="svc-icon">🏗️</div>
+        <div class="svc-title">New Plumbing Installations</div>
+        <div class="svc-desc">Full plumbing for new builds, extensions and renovations. Water supply, drainage and hot water systems installed to spec.</div>
+      </div>
+      <div class="svc-card rv d5">
+        <div class="svc-icon">🔩</div>
+        <div class="svc-title">Maintenance & Repairs</div>
+        <div class="svc-desc">Tap repairs, toilet cistern fixes, valve replacements, water pressure problems and general plumbing maintenance contracts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="about">
+  <div class="section-inner">
+    <div class="why-inner">
+      <div class="rv-l">
+        <div class="why-img">
+          <img src="https://images.unsplash.com/photo-1603796846097-bee99e4a601f?w=800&q=80&fit=crop&auto=format" alt="Professional plumber at work"/>
+        </div>
+      </div>
+      <div class="rv-r">
+        <div class="section-tag">Why Choose Us</div>
+        <h2 class="section-h">WE DON'T JUST<br>FIX PIPES.<br><span style="color:var(--cyan)">WE FIX<br>PROBLEMS.</span></h2>
+        <p style="color:var(--muted);font-size:.9rem;line-height:1.8;margin:1.25rem 0">
+          GA Plumbing Services (PTY) LTD is a <strong style="color:#fff">registered South African plumbing company</strong> built on honest pricing, quality workmanship and reliable service. We treat every job — big or small — with the same level of care and professionalism.
+        </p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-n"><span class="count" data-target="500">0</span>+</div>
+            <div class="stat-label">Jobs Completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n"><span class="count" data-target="60">0</span>min</div>
+            <div class="stat-label">Emergency Response</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n"><span class="count" data-target="100">0</span>%</div>
+            <div class="stat-label">Satisfaction Rate</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n">24<span style="color:#fff;font-size:1.5rem">/7</span></div>
+            <div class="stat-label">Always Available</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-inner">
+    <div class="process-head rv">
+      <div class="section-tag" style="justify-content:center">How It Works</div>
+      <h2 class="section-h">SIMPLE. FAST.<br>PROFESSIONAL.</h2>
+      <p>Getting your plumbing sorted has never been easier. Here's how we work.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <div class="step-dot">01</div>
+        <div class="step-title">Call or WhatsApp</div>
+        <div class="step-desc">Reach us on 073 073 1938 any time. We answer calls and WhatsApp messages 24 hours a day, 7 days a week.</div>
+      </div>
+      <div class="step rv d2">
+        <div class="step-dot">02</div>
+        <div class="step-title">Describe the Problem</div>
+        <div class="step-desc">Tell us what's happening. We'll assess urgency, give you an upfront estimate and confirm availability on the spot.</div>
+      </div>
+      <div class="step rv d4">
+        <div class="step-dot">03</div>
+        <div class="step-title">We Arrive & Assess</div>
+        <div class="step-desc">Our plumber arrives on time, inspects the issue thoroughly and explains exactly what needs to be done and why.</div>
+      </div>
+      <div class="step rv d6">
+        <div class="step-dot">04</div>
+        <div class="step-title">Problem Solved</div>
+        <div class="step-desc">We fix it right first time, clean up the work area and make sure you're completely satisfied before we leave.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-inner">
+    <div class="testi-head rv">
+      <div class="section-tag" style="justify-content:center">Reviews</div>
+      <h2 class="section-h">WHAT OUR<br>CLIENTS SAY</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card rv">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">Called at 9pm with a burst geyser, they were at my house within an hour. Professional, clean and sorted it quickly. Highly recommend!</div>
+        <div class="testi-author">
+          <div class="testi-avatar">TM</div>
+          <div><div class="testi-name">Themba M.</div><div class="testi-loc">Johannesburg, GP</div></div>
+        </div>
+      </div>
+      <div class="testi-card rv d2">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">Great service from start to finish. Fair pricing, no hidden costs and the workmanship is top quality. Will definitely use again.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">SN</div>
+          <div><div class="testi-name">Sipho N.</div><div class="testi-loc">Pretoria, GP</div></div>
+        </div>
+      </div>
+      <div class="testi-card rv d4">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">Had a stubborn blocked drain for weeks. GA Plumbing came out same day and fixed it properly. Finally someone who actually knows their stuff!</div>
+        <div class="testi-author">
+          <div class="testi-avatar">LV</div>
+          <div><div class="testi-name">Linda V.</div><div class="testi-loc">Midrand, GP</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="section-tag rv" style="justify-content:center">Get In Touch</div>
+  <h2 class="rv d1">GOT A <span>PLUMBING</span><br>PROBLEM?</h2>
+  <p class="rv d2">Don't wait for a small leak to become a big disaster. Call GA Plumbing Services now — available 24 hours, 7 days a week across South Africa.</p>
+  <a href="tel:0730731938" class="cta-phone rv d3">073 073 1938</a>
+  <div class="cta-btns rv d4">
+    <a href="tel:0730731938" class="btn btn-cyan">📞 Call Now</a>
+    <a href="https://wa.me/270730731938" class="btn btn-outline">💬 WhatsApp Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="ft-logo">
+        <div class="ft-logo-icon">GA</div>
+        GA Plumbing Services
+      </div>
+      <p class="ft-desc">GA Plumbing Services (PTY) LTD — your trusted plumbing professionals in South Africa. Licensed, insured and available around the clock for all your plumbing needs.</p>
+      <div class="ft-contact">
+        📞 <a href="tel:0730731938">073 073 1938</a><br>
+        💬 <a href="https://wa.me/270730731938">WhatsApp Available 24/7</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Burst Pipe Repairs</a></li>
+        <li><a href="#">Geyser Installation</a></li>
+        <li><a href="#">Drain Unblocking</a></li>
+        <li><a href="#">Bathroom Fitting</a></li>
+        <li><a href="#">New Installations</a></li>
+        <li><a href="#">Maintenance</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About GA Plumbing</a></li>
+        <li><a href="#">Our Process</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Emergency Call-Out</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom" style="max-width:1140px;margin:0 auto">
+    <p>GA Plumbing Services (PTY) LTD © 2024 · All Rights Reserved · South Africa</p>
+    <p>073 073 1938 · Available 24/7</p>
+  </div>
+</footer>
+
+<script>
+// ── GENERATE BUBBLES ──
+const container = document.getElementById('bubbles');
+for(let i = 0; i < 18; i++){
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  const size = Math.random()*60+10;
+  b.style.cssText = `
+    width:${size}px;height:${size}px;
+    left:${Math.random()*100}%;
+    animation-duration:${Math.random()*14+8}s;
+    animation-delay:${Math.random()*10}s;
+  `;
+  container.appendChild(b);
+}
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis') });
+}, {threshold:0.1});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => obs.observe(el));
+
+// ── COUNTER ──
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target;
+      const target = +el.dataset.target;
+      let cur = 0;
+      const step = target/(1600/16);
+      const timer = setInterval(()=>{
+        cur = Math.min(cur+step, target);
+        el.textContent = Math.floor(cur);
+        if(cur>=target) clearInterval(timer);
+      },16);
+      cObs.unobserve(el);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.count').forEach(el => cObs.observe(el));
+</script>
+</body>
+</html>
